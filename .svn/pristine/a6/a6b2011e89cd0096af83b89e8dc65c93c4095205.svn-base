@@ -1,0 +1,20 @@
+package com.spendwell.activity;
+
+import com.example.budgetwell.R;
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class ShowHistoryActivity extends Activity {
+	private TextView history_tv;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.history_activity);
+		history_tv = (TextView) findViewById(R.id.histroy);
+
+		
+	}
+}

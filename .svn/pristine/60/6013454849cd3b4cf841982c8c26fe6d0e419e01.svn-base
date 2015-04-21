@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/com/special/ResideMenu=UTF-8
+encoding//src/com/spendwell/activity/MainActivity.java=UTF-8
+encoding//src/com/spendwell/adapter/ReminderItemAdapter.java=UTF-8
+encoding//src/com/spendwell/entity/OutGoingTransaction.java=UTF-8
+encoding//src/com/spendwell/fragment/PayFragment.java=UTF-8
+encoding//src/com/spendwell/fragment/ShakeFragment.java=UTF-8

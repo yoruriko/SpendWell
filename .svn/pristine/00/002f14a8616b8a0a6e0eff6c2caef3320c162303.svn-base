@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/action_bar_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp" >
+
+        <ImageView
+            android:id="@+id/vibrate_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/vibrate" />
+
+        <TextView
+            android:id="@+id/vibrate_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/vibrate_img"
+            android:layout_toRightOf="@id/vibrate_img"
+            android:text="Vibrate"
+            android:textSize="20sp" />
+
+        <Switch
+            android:id="@+id/vibrate_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/vibrate_img"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp" >
+
+        <ImageView
+            android:id="@+id/sound_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/sound" />
+
+        <TextView
+            android:id="@+id/sound_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/sound_img"
+            android:layout_toRightOf="@id/sound_img"
+            android:text="Sound"
+            android:textSize="20sp" />
+
+        <Switch
+            android:id="@+id/sound_switch"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/sound_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/time_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:clickable="true" >
+
+        <ImageView
+            android:id="@+id/time_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/time" />
+
+        <TextView
+            android:layout_alignBottom="@id/time_img"
+            android:layout_toRightOf="@id/time_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reminder Time"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="09:00"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/time_img"
+            android:textColor="@color/draker_grey"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</LinearLayout>

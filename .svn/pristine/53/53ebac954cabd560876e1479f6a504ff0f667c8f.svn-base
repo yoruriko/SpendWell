@@ -1,0 +1,77 @@
+package com.spendwell.adapter;
+
+import java.util.List;
+
+import com.example.budgetwell.R;
+import com.spendwell.entity.BankAccount;
+
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+public class AccItemAdapter extends BaseAdapter {
+	private Activity mActivity;
+	private List<BankAccount> mList;
+	
+	
+	public AccItemAdapter(Activity mActivity, List<BankAccount> mList) {
+		super();
+		this.mActivity = mActivity;
+		this.mList = mList;
+	}
+
+	@Override
+	public int getCount() {
+		return mList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return mList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		AccountViewHolder holder;
+		BankAccount item = mList.get(position);
+		if (convertView == null) {
+			convertView = mActivity.getLayoutInflater().inflate(
+					R.layout.account_item_layout, null);
+			holder = new AccountViewHolder();
+			holder.name = (TextView) convertView.findViewById(R.id.acc_name);
+			holder.no = (TextView) convertView.findViewById(R.id.acc_no);
+			holder.sortCode = (TextView) convertView
+					.findViewById(R.id.sortCode);
+			holder.iban = (TextView) convertView.findViewById(R.id.iban);
+			holder.overdraft = (TextView) convertView
+					.findViewById(R.id.overdraft);
+			holder.balance = (TextView) convertView.findViewById(R.id.balance);
+			holder.totalBalance = (TextView) convertView
+					.findViewById(R.id.total_balance);
+			convertView.setTag(holder);
+		} else {
+			holder = (AccountViewHolder) convertView.getTag();
+		}
+		holder.name.setText(item.getAccountName());
+		holder.no.setText(item.getAccountNumber());
+		holder.sortCode.setText(item.getSortCode());
+		holder.iban.setText(item.getIban());
+		holder.overdraft.setText("£ "+item.getOverdraft());
+		holder.balance.setText("£ "+item.getAmount());
+		holder.totalBalance.setText("£ "+item.getTotalBalance());
+	
+		convertView.setTag(holder);
+		return convertView;
+	}
+
+	public class AccountViewHolder {
+		TextView name, no, sortCode, iban, overdraft, balance, totalBalance;
+	}
+}

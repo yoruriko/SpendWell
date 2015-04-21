@@ -1,0 +1,112 @@
+package com.spendwell.activity;
+
+import java.util.Random;
+
+import com.example.budgetwell.R;
+import com.spendwell.entity.BankAccount;
+import com.spendwell.service.SharedService;
+import com.spendwell.utils.ReminderSQLServiceImpl;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MascotActivity extends Activity {
+	private ImageView meme_img;
+	private TextView meme_mood, meme_punishment;
+	private SharedService ss;
+	private ReminderSQLServiceImpl impl;
+	private int[] kitty;
+	private int punishClick = 0;
+	private boolean isPunish = false;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.meme_activity_layout);
+
+		meme_img = (ImageView) findViewById(R.id.meme);
+		meme_mood = (TextView) findViewById(R.id.meme_mood);
+		meme_punishment = (TextView) findViewById(R.id.meme_punishment);
+		ss = new SharedService(this);
+		impl = new ReminderSQLServiceImpl(this);
+		kitty = new int[] { R.drawable.kitty_0, R.drawable.kitty_1,
+				R.drawable.kitty_2, R.drawable.kitty_3, R.drawable.kitty_4,
+				R.drawable.kitty_5, R.drawable.kitty_6, R.drawable.kitty_7,
+				R.drawable.kitty_8, R.drawable.kitty_9, R.drawable.kitty_10 };
+		setMeme();
+		setActionBar();
+
+	}
+
+	public int getMood() {
+		double total = 0;
+		if (ss.readAccountList() != null) {
+			for (BankAccount acc : ss.readAccountList()) {
+				total += acc.getTotalBalance();
+			}
+			double unpaid = impl.getUnpaid();
+			int index = (int) (unpaid / total * 10);
+			return index;
+		}
+		return 0;
+	}
+
+	public void setMeme() {
+		int mood = getMood();
+		meme_img.setImageResource(kitty[mood]);
+		meme_mood.setText("MeMe's Mood index is:" + mood);
+		if (mood >= 5) {
+			meme_punishment.setVisibility(View.VISIBLE);
+			isPunish = true;
+			punish();
+		} else {
+			meme_punishment.setVisibility(View.INVISIBLE);
+		}
+	}
+
+	public void punish() {
+		Random ran = new Random();
+		punishClick = ran.nextInt((getMood() - 4) * 10);
+
+		meme_img.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (punishClick > 0) {
+					punishClick--;
+				} else if (punishClick == 0 && isPunish) {
+					meme_img.setImageResource(kitty[3]);
+					meme_mood.setText("MeMe's Mood index is:" + 3);
+					meme_punishment.setVisibility(View.INVISIBLE);
+					isPunish = false;
+					Toast.makeText(getApplicationContext(),
+							"Meme Forgive you now, but keep spending well.",
+							Toast.LENGTH_SHORT).show();
+				}
+			}
+
+		});
+	}
+
+	public void setActionBar() {
+		TextView text = (TextView) this.findViewById(R.id.actionbar_text);
+		text.setText("MeMe");
+
+		Button back = (Button) this.findViewById(R.id.actionbar_btn);
+		back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				onBackPressed();
+			}
+		});
+	}
+}

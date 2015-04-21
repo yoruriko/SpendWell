@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/show_sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Account details" />
+
+    <Button
+        android:id="@+id/show_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/show_sp"
+        android:text="Show Notification" />
+
+    <Button
+        android:id="@+id/shake_funtion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/show_note"
+        android:text="Test Check Balance Funtion" />
+
+    <Button
+        android:id="@+id/pay_funtion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shake_funtion"
+        android:text="Test Pay funtion" />
+
+    <Button
+        android:id="@+id/history_funtion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pay_funtion"
+        android:text="Test History Funtion" />
+
+    <Button
+        android:id="@+id/test_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/history_funtion"
+        android:text="Test Reminder" />
+
+    <Button
+        android:id="@+id/testMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/test_reminder"
+        android:text="Test Map" />
+
+    <Button
+        android:id="@+id/testHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testMap"
+        android:text="Test Help" />
+
+    <Button
+        android:id="@+id/testMeme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testHelp"
+        android:text="Test Meme" />
+
+</RelativeLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/form_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:text="Example"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/iban_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/form_name"
+        android:text="(..."
+        android:textColor="@color/Lloyds_green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/iban"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iban_pre"
+        android:text="2367"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/iban_after"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iban"
+        android:text=")"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/form_name"
+        android:text="2015 - 04 -15"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/draker_grey" />
+
+    <ImageView
+        android:id="@+id/more_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/more_btn" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/more_img"
+        android:text="123.00"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/amount_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/amount"
+        android:text="+ £"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/amount"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/more_img"
+        android:text="1200.00"
+        android:textColor="@color/draker_grey"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/blance_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/balance"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/balance"
+        android:text="£"
+        android:textColor="@color/draker_grey"
+        android:textSize="16sp" />
+
+</RelativeLayout>

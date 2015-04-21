@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_box"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true" >
+
+    <ImageView
+        android:id="@+id/logo_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/login_logo" />
+
+    <EditText
+        android:id="@+id/user_name_et"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo_iv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/background_grey"
+        android:gravity="center_horizontal"
+        android:hint="@string/user_name_hint"
+        android:inputType="textPersonName"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/pwd_et"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name_et"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/background_grey"
+        android:gravity="center_horizontal"
+        android:hint="@string/pwd_hint"
+        android:inputType="textPassword"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp" />
+
+    <LinearLayout
+        android:id="@+id/btn_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/pwd_et"
+        android:layout_alignRight="@id/pwd_et"
+        android:layout_below="@id/pwd_et"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:paddingRight="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/login_btn" />
+
+        <ImageButton
+            android:id="@+id/login_safedial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:paddingLeft="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/login_safedial" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/rmb_user_name_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_box"
+        android:layout_below="@+id/btn_box"
+        android:text="@string/rmb_user_name"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp" />
+
+    <View
+        android:id="@+id/view_mask"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#55000000"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <com.spendwell.utils.LoginView
+        android:id="@+id/mLoginView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

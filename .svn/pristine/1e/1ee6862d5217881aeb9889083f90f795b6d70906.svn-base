@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SpendWell</string>
+    <string name="action_settings">Settings</string>
+    <string name="user_name_hint">User name</string>
+    <string name="pwd_hint">Password</string>
+    <string name="login_btn_text">Login</string>
+    <string name="rmb_user_name">Remember username</string>
+    <string name="name_empty_message">Please fill the username</string>
+    <string name="pwd_emptu_mesage">Please fill the password</string>
+    <string name="authentication_fail_message">Authentication fail, incorrect username or password</string>
+		<string name="authentication_safe_dial_message">Authentication fail, incorrect username or pattern</string>
+    <string-array name="reminder_type_array">
+        <item>Meal</item>
+        <item>Drink</item>
+        <item>Gas Bill</item>
+        <item>Electricity Bill</item>
+        <item>Phone Bill</item>
+        <item>Internet Bill</item>
+        <item>Transport</item>
+        <item>Else</item>
+    </string-array>
+    <string-array name="reminder_pay_type_array">
+        <item>Owe</item>
+        <item>Lend</item>
+        <item>Self</item>
+    </string-array>
+
+		
+	<!--container.png -->	
+	<string name="welcome_back">Welcome Back</string>	
+	<string name="current_account">Current Account</string>	
+	<string name="saving_account">Saving Account</string>
+	
+	<string name="recent_transactions">Recent Transactions</string>
+	
+	<string name="make_a_transaction">Make a Transaction</string>
+	<string name="atm_finder">ATM Finder</string>
+    <string name="reminder">Reminder</string>
+    <string name="check_balance">Check Balance</string>
+    <string name="help">Help</string>
+		
+    <!--loading.png -->
+    <string name="loading">Loading</string>	
+    
+    <!--login.png -->
+    <string name="login">Login</string>	
+    <string name="more_options">More options</string>	
+    		
+    <!--transaction.png -->
+    <string name="my_saving_account">My saving account</string>	
+    <string name="name">Name</string>	
+    <string name="iban">IBAN</string>	
+    <string name="account_no">Account No.</string>	
+    <string name="sort_code">Sort Code</string>	
+    
+    <string name="transaction_in_the_last_30_days">100 transaction in the last 30 days</string>	
+    <string name="Date_and_Time">Date and Time</string>
+    <string name="Description">Description</string>
+    <string name="in">In</string>
+    <string name="out">Out</string>
+    <string name="get_statement">Get Statement</string>
+    <string name="transfer">Transfer</string>
+    <string name="last_login">Last Login</string>
+    
+	<!--Student Account Information Page -->
+	<string name="student_account">Student Account</string>	
+	<string name="student_account_overview">
+	    Make the most out of student life with a Lloyds Bank Student Account.Our Student Bank Account is 
+	    packed with everything you need to help you make the most of your time at university and manage your 
+	    money. It was recently awarded “Student Account Provider of the Year” by Moneyfacts.</string>
+	
+	
+	<!--Gradute Account Information Page -->
+	<string name="gradute_account">Graduate Account</string>	
+	
+</resources>

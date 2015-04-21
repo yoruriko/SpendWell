@@ -1,0 +1,102 @@
+package com.example.budgetwell;
+
+import org.json.JSONObject;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+	private Button login_btn;
+	private EditText user_et, pwd_et;
+	private CheckBox rmb_cb;
+	private String user_name, user_pwd;
+	private RequestQueue mQueue;
+
+	private String ip;
+	private String login_path;
+	private String login_end;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.login_main);
+
+		login_btn = (Button) this.findViewById(R.id.login_btn);
+		user_et = (EditText) this.findViewById(R.id.user_name_et);
+		pwd_et = (EditText) this.findViewById(R.id.pwd_et);
+		rmb_cb = (CheckBox) this.findViewById(R.id.rmb_user_name_cb);
+		ip = getResources().getString(R.string.server_ip);
+		login_path = "http://" + ip + "/api/person/";
+		login_end = "/?format=json";
+
+		mQueue = Volley.newRequestQueue(MainActivity.this);
+
+		initListener();
+
+	}
+
+	public void initListener() {
+
+		login_btn.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (TextUtils.isEmpty(user_et.getText())) {
+					Toast.makeText(getApplicationContext(),
+							R.string.name_empty_message, Toast.LENGTH_SHORT)
+							.show();
+				} else if (TextUtils.isEmpty(pwd_et.getText())) {
+					Toast.makeText(getApplicationContext(),
+							R.string.pwd_emptu_mesage, Toast.LENGTH_SHORT)
+							.show();
+				} else {
+					user_name = user_et.getText().toString().trim();
+					user_pwd = pwd_et.getText().toString().trim();
+
+					String url = login_path + "?username=" + user_name + "&"
+							+ "?password=" + user_pwd + login_end;
+
+					Toast.makeText(getApplicationContext(), url, Toast.LENGTH_LONG).show();
+					
+					JsonObjectRequest login_request = new JsonObjectRequest(
+							url, null, new Response.Listener<JSONObject>() {
+
+								@Override
+								public void onResponse(JSONObject response) {
+									String result = response.toString();
+									Toast.makeText(getApplicationContext(),
+											result, Toast.LENGTH_LONG).show();
+
+								}
+							}, new ErrorListener() {
+
+								@Override
+								public void onErrorResponse(VolleyError error) {
+									Toast.makeText(getApplicationContext(),
+											"error", Toast.LENGTH_SHORT).show();
+
+								}
+							});
+					mQueue.add(login_request);
+				}
+			}
+		});
+	}
+
+}

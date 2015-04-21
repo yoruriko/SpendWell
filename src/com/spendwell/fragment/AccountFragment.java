@@ -1,0 +1,58 @@
+package com.spendwell.fragment;
+
+import com.example.budgetwell.R;
+import com.spendwell.entity.BankAccount;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+/**
+ * Account Fragment that shows after the shake event, obtain in the
+ * AccountDeatilActivity's ViewPager
+ * 
+ * @author Yifei Gao
+ * 
+ */
+public class AccountFragment extends Fragment {
+	private BankAccount mAccount;
+	private String username;
+	private TextView name, no, sortCode, iban, overdraft, balance,
+			totalBalance, username_tv;
+
+	public AccountFragment(BankAccount item, String username) {
+		mAccount = item;
+		this.username = username;
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.account_item_layout, null);
+		// initialized all the global variables
+		name = (TextView) view.findViewById(R.id.acc_name);
+		no = (TextView) view.findViewById(R.id.acc_no);
+		sortCode = (TextView) view.findViewById(R.id.sortCode);
+		iban = (TextView) view.findViewById(R.id.iban);
+		overdraft = (TextView) view.findViewById(R.id.overdraft);
+		balance = (TextView) view.findViewById(R.id.balance);
+		totalBalance = (TextView) view.findViewById(R.id.total_balance);
+		username_tv = (TextView) view.findViewById(R.id.username);
+
+		// set the contents values with given account item details
+		name.setText(mAccount.getAccountName());
+		no.setText(mAccount.getAccountNumber());
+		sortCode.setText(mAccount.getSortCode());
+		iban.setText(mAccount.getIban());
+		overdraft.setText("" + mAccount.getOverdraft());
+		balance.setText("" + mAccount.getAmount());
+		totalBalance.setText("" + mAccount.getTotalBalance());
+		username_tv.setText(username);
+
+		return view;
+	}
+}

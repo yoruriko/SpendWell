@@ -1,0 +1,128 @@
+package com.spendwell.fragment;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONArray;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.budgetwell.R;
+import com.google.gson.Gson;
+import com.spendwell.activity.IncomingDetailActivity;
+import com.spendwell.adapter.IncomingAdapter;
+import com.spendwell.entity.IncomingTransaction;
+import com.spendwell.service.SharedService;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+import com.google.gson.reflect.TypeToken;
+
+/**
+ * Fragment that obtained in the HistoryActivity's view pager, display list of
+ * incoming Transactions
+ * 
+ * @author Yifei Gao
+ * 
+ */
+public class IncomingFragment extends Fragment {
+	private List<IncomingTransaction> list;
+	private ListView listView;
+	private SharedService ss;
+	private RequestQueue mQueue;
+	private IncomingAdapter adapter;
+	private String url = "http://spendwell.herokuapp.com/api/incoming/";
+
+	// handle the response of the request
+	private Handler mHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			if (msg.what == 0) {
+				// set adapter of the listView
+				adapter = new IncomingAdapter(getActivity(), list);
+				listView.setAdapter(adapter);
+				listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+					// Set onClick event of each item to start the
+					// IncomingDetailAcitvtiy
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view,
+							int position, long id) {
+						Intent it = new Intent(getActivity(),
+								IncomingDetailActivity.class);
+						Gson gson = new Gson();
+						String json = gson.toJson(list.get(position));
+						it.putExtra("item", json);
+						startActivity(it);
+					}
+				});
+			}
+		}
+
+	};
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.incoming_fragment_layout,
+				container, false);
+		listView = (ListView) view.findViewById(R.id.incoming_list);
+		ss = new SharedService(getActivity());
+		mQueue = Volley.newRequestQueue(getActivity());
+		loadIncoming();// load all incoming transactions
+
+		return view;
+	}
+
+	/**
+	 * JsonArrayRequest that read all incoming transaction from the server
+	 * @author Yifei Gao
+	 * 
+	 */
+	public void loadIncoming() {
+		JsonArrayRequest request = new JsonArrayRequest(url,
+				new Response.Listener<JSONArray>() {
+
+					@Override
+					public void onResponse(JSONArray response) {
+						String json = response.toString();
+						Gson gson = new Gson();
+						list = gson.fromJson(json,
+								new TypeToken<List<IncomingTransaction>>() {
+								}.getType());
+						mHandler.obtainMessage(0).sendToTarget();
+
+					}
+				}, new Response.ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Toast.makeText(getActivity(), "Loading incoming error",
+								Toast.LENGTH_SHORT).show();
+					}
+				}) {
+			@Override
+			public Map<String, String> getHeaders() throws AuthFailureError {
+				Map<String, String> header = new HashMap<String, String>();
+				header.put("Authorization", "Token " + ss.getRequestToken());
+				return header;
+			}
+		};
+		mQueue.add(request);
+	}
+}

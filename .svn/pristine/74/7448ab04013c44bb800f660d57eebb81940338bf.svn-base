@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/type_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:src="@drawable/drink_type" />
+
+    <TextView
+        android:id="@+id/type_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/type_img"
+        android:text="Drink"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/amount_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/type_txt"
+        android:layout_toRightOf="@id/type_img"
+        android:text="£ "
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/amount_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/amount_pre"
+        android:layout_toRightOf="@id/amount_pre"
+        android:text="12.00"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/date_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/amount_pre"
+        android:layout_toRightOf="@id/type_img"
+        android:text="Need to pay before: " />
+
+    <TextView
+        android:id="@+id/date_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/date_pre"
+        android:layout_toRightOf="@id/date_pre"
+        android:text="2015-03-17" />
+
+    <TextView
+        android:id="@+id/details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/type_img"
+        android:layout_marginLeft="10dp"
+        android:text="Details:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/details"
+        android:padding="10dp"
+        android:text="Split drinking bill, Max paid for my drinks and snaks" />
+
+    <TextView
+        android:id="@+id/target_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/description"
+        android:layout_marginLeft="10dp"
+        android:text="Target:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/target_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/target_pre"
+        android:layout_centerHorizontal="true"
+        android:text="Max"
+        android:textSize="20sp" />
+
+</RelativeLayout>

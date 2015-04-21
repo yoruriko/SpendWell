@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From" />
+
+    <RelativeLayout
+        android:id="@+id/from_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/from"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp" >
+
+        <TextView
+            android:id="@+id/accountName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="accountName" />
+
+        <TextView
+            android:id="@+id/accountBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/accountName"
+            android:layout_alignParentRight="true"
+            android:text="£ 00.00" />
+
+        <TextView
+            android:id="@+id/sortCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/accountName"
+            android:layout_below="@id/accountName"
+            android:text="12-34-56" />
+
+        <TextView
+            android:id="@+id/iban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/sortCode"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/sortCode"
+            android:text="12345678" />
+
+        <TextView
+            android:id="@+id/availableAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/sortCode"
+            android:layout_alignParentRight="true"
+            android:text="Available £ 00.00" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/from_box"
+        android:text="To" />
+
+    <RelativeLayout
+        android:id="@+id/to_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/to"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp" >
+
+        <EditText
+            android:id="@+id/toAccountName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="ToAccountName" />
+
+        <EditText
+            android:id="@+id/toSortCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toAccountName"
+            android:hint="12-34-56" />
+
+        <EditText
+            android:id="@+id/toIban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/toSortCode"
+            android:layout_alignParentRight="true"
+            android:hint="12345678" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/to_box"
+        android:text="Amount" />
+
+    <EditText
+        android:id="@+id/pay_amount"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/amount"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/pay_amount"
+        android:layout_toLeftOf="@id/pay_amount"
+        android:text="£" />
+
+    <Button
+        android:id="@+id/pay_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pay_amount"
+        android:layout_centerHorizontal="true"
+        android:text="Pay" />
+
+</RelativeLayout>

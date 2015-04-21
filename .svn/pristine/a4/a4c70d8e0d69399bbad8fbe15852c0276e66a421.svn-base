@@ -1,0 +1,121 @@
+package com.spendwell.activity;
+
+import com.example.budgetwell.R;
+import com.spendwell.entity.Account;
+import com.spendwell.entity.OutGoingTransaction;
+import com.spendwell.service.SharedService;
+import com.spendwell.utils.TransferSQLServiceImpl;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class PayActivity extends Activity {
+	private TextView accName_tv, balance_tv, sortCode_tv, iban_tv,
+			availiable_tv;
+	private EditText toAcc_edt, toSortCode_edt, toIban_edt, amount_edt;
+	private SharedService ss;
+	private Button pay_btn;
+	private TransferSQLServiceImpl impl;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.pay_activity);
+		ss = new SharedService(getApplicationContext());
+		accName_tv = (TextView) findViewById(R.id.accountName);
+		balance_tv = (TextView) findViewById(R.id.accountBalance);
+		sortCode_tv = (TextView) findViewById(R.id.sortCode);
+		iban_tv = (TextView) findViewById(R.id.iban);
+		availiable_tv = (TextView) findViewById(R.id.availableAmount);
+		toAcc_edt = (EditText) findViewById(R.id.toAccountName);
+		toSortCode_edt = (EditText) findViewById(R.id.toSortCode);
+		toIban_edt = (EditText) findViewById(R.id.toIban);
+		amount_edt = (EditText) findViewById(R.id.pay_amount);
+
+		pay_btn = (Button) findViewById(R.id.pay_btn);
+		impl = new TransferSQLServiceImpl(getApplicationContext());
+
+		initFromBox();
+		initListener();
+	}
+
+	public void initFromBox() {
+		Account acc = ss.readAccount();
+		accName_tv.setText(acc.getAccName());
+		balance_tv.setText("£ " + acc.getAmount() + ".00");
+		sortCode_tv.setText(acc.getSortCode());
+		iban_tv.setText(acc.getIban());
+		availiable_tv.setText("Availiable: £ " + acc.getAvailiableAmount()
+				+ ".00");
+	}
+
+	public void initListener() {
+		pay_btn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				String accName = toAcc_edt.getText().toString().trim();
+				String sortCode = toSortCode_edt.getText().toString().trim();
+				String iban = toIban_edt.getText().toString().trim();
+				int pay = 0;
+
+				if (TextUtils.isEmpty(toAcc_edt.getText())) {
+					Toast.makeText(getApplicationContext(),
+							"Please fill the To Account Name",
+							Toast.LENGTH_SHORT).show();
+				} else if (TextUtils.isEmpty(toSortCode_edt.getText())) {
+					Toast.makeText(getApplicationContext(),
+							"Pleas fill the sortCode", Toast.LENGTH_SHORT)
+							.show();
+
+				} else if (TextUtils.isEmpty(toIban_edt.getText())) {
+					Toast.makeText(getApplicationContext(),
+							"Pleas fill the IBAN", Toast.LENGTH_SHORT).show();
+				} else if (TextUtils.isEmpty(amount_edt.getText())) {
+					Toast.makeText(getApplicationContext(),
+							"Amount need to be filled", Toast.LENGTH_SHORT)
+							.show();
+				} else {
+					pay = Integer.parseInt(amount_edt.getText().toString());
+					if (pay <= 0) {
+						Toast.makeText(getApplicationContext(),
+								"Amount need to be greater than 0",
+								Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					String theDate = String.valueOf(System.currentTimeMillis());
+					Account acc = ss.readAccount();
+					int acc_balance = acc.getAmount();
+					OutGoingTransaction trans = new OutGoingTransaction(acc
+							.getAccName(), acc.getAccNumber(), accName,
+							sortCode, iban, theDate, pay, acc.getAmount());
+					int result = impl.insertOutGoingTransaction(trans);
+					if (result > 0) {
+						Toast.makeText(getApplicationContext(),
+								"Transaction Sucess!", Toast.LENGTH_SHORT)
+								.show();
+						acc_balance = acc_balance - pay;
+						acc.setAmount(acc_balance);
+						acc.setAvailiableAmount(acc_balance
+								+ acc.getOverdraft());
+						ss.saveAccount(acc);
+						PayActivity.this.finish();
+					} else {
+						Toast.makeText(getApplicationContext(),
+								"Transaction Fail!", Toast.LENGTH_SHORT).show();
+					}
+				}
+
+			}
+		});
+	}
+}

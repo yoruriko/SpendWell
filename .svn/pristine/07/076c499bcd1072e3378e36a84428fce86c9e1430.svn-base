@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="title"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:text="Location:" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/location"
+        android:layout_toRightOf="@id/location"
+        android:text="address" />
+
+    <TextView
+        android:id="@+id/postCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/address"
+        android:layout_below="@id/address"
+        android:text="postCode" />
+
+    <TextView
+        android:id="@+id/sc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/address"
+        android:layout_below="@id/postCode"
+        android:text="Sortcodes:" />
+
+    <TextView
+        android:id="@+id/sortCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/sc"
+        android:layout_toRightOf="@id/sc"
+        android:text="123123123" />
+
+    <TextView
+        android:id="@+id/contact_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sc"
+        android:text="Contact Details:" />
+
+    <TextView
+        android:id="@+id/tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/address"
+        android:layout_below="@id/contact_details"
+        android:text="Tel:" />
+
+    <TextView
+        android:id="@+id/tel_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tel"
+        android:layout_toRightOf="@id/tel"
+        android:text="1111111" />
+
+    <TextView
+        android:id="@+id/fax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tel"
+        android:layout_below="@id/tel"
+        android:text="Fax:" />
+
+    <TextView
+        android:id="@+id/fax_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/fax"
+        android:layout_toRightOf="@id/fax"
+        android:text="11111111" />
+
+    <TextView
+        android:id="@+id/hr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fax"
+        android:text="Hours:" />
+
+    <TextView
+        android:id="@+id/hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/address"
+        android:layout_below="@id/hr"
+        android:text="Monday 13:00-20:00" />
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey" >
+
+    <TextView
+        android:id="@+id/acc_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="acc_name" />
+
+    <TextView
+        android:id="@+id/acc_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/acc_name"
+        android:text="acc_no" />
+
+    <TextView
+        android:id="@+id/sortCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/acc_no"
+        android:text="sortCode" />
+
+    <TextView
+        android:id="@+id/iban"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/sortCode"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/sortCode"
+        android:text="iban" />
+
+    <TextView
+        android:id="@+id/overdraft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sortCode"
+        android:text="overdraft" />
+
+    <TextView
+        android:id="@+id/balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overdraft"
+        android:text="balance" />
+    <TextView android:id="@+id/total_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/balance"
+        android:text="total balance"/>
+
+</RelativeLayout>

@@ -1,0 +1,42 @@
+package com.spendwell.thread;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
+import android.os.Handler;
+
+public class httpGetThread extends Thread {
+
+	private String url, token;
+	private Handler handler;
+
+	public httpGetThread(String url, Handler handler, String token) {
+		this.url = url;
+		this.handler = handler;
+	}
+
+	@Override
+	public void run() {
+		HttpClient client = new DefaultHttpClient();
+
+		HttpGet get = new HttpGet(url);
+		get.addHeader("Authorization", "Basic cm9vdDp0b29y");
+
+		try {
+			HttpResponse response = client.execute(get);
+			int result = response.getStatusLine().getStatusCode();
+			if (result == 200) {
+				String json = EntityUtils.toString(response.getEntity());
+				handler.obtainMessage(1, json).sendToTarget();
+			}else{
+				handler.obtainMessage(2, result).sendToTarget();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

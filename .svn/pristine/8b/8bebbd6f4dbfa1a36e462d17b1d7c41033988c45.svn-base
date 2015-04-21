@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
+
+    <TextView
+        android:id="@+id/type_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type:"
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/type_spinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/type_tv"
+        android:entries="@array/reminder_type_array"
+        android:spinnerMode="dropdown" />
+
+    <Spinner
+        android:id="@+id/pay_type_spinner"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/type_spinner"
+        android:entries="@array/reminder_pay_type_array"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/target_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/type_spinner"
+        android:text="Target:" />
+
+    <EditText
+        android:id="@+id/target_edt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/target_tv"
+        android:layout_toRightOf="@id/target_tv"
+        android:hint="Enter target name here" />
+
+    <TextView
+        android:id="@+id/amount_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/target_edt"
+        android:text="Amount:"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/amount_edt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/amount_tv"
+        android:layout_toRightOf="@id/amount_tv"
+        android:hint="Enter amount here"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/amount_edt"
+        android:text="Date:"
+        android:textSize="16sp" />
+
+    <DatePicker
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/date_tv"
+        android:layout_toRightOf="@id/date_tv"
+        android:calendarViewShown="false"
+        android:layoutMode="clipBounds" />
+
+    <TextView
+        android:id="@+id/description_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_picker"
+        android:text="Descrition:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/alarm_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/description_tv"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/description_tv"
+        android:text="Set Alarm "
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/alram_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/description_tv"
+        android:layout_toRightOf="@id/alarm_tv" />
+
+    <EditText
+        android:id="@+id/description_edt"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/alram_cb"
+        android:hint="Enter Description here" />
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/description_edt"
+        android:text="Save" />
+
+</RelativeLayout>

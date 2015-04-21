@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/action_bar_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:text="Location:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location"
+            android:layout_toRightOf="@id/location"
+            android:text="address" />
+
+        <TextView
+            android:id="@+id/postCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/address"
+            android:text="postCode" />
+
+        <TextView
+            android:id="@+id/sc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/postCode"
+            android:text="Sortcodes:"
+            android:textStyle="bold" 
+            android:layout_marginRight="10dp"/>
+
+        <TextView
+            android:id="@+id/sortCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/sc"
+            android:layout_toRightOf="@id/sc"
+            android:text="123123123" />
+
+        <TextView
+            android:id="@+id/contact_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sc"
+            android:text="Contact Details:"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/contact_details"
+            android:text="Tel:"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/tel_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tel"
+            android:layout_toRightOf="@id/tel"
+            android:text="1111111" />
+
+        <TextView
+            android:id="@+id/fax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tel"
+            android:layout_below="@id/tel"
+            android:text="Fax:"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/fax_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/fax"
+            android:layout_toRightOf="@id/fax"
+            android:text="11111111" />
+
+        <TextView
+            android:id="@+id/hr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fax"
+            android:text="Hours:"
+            android:textStyle="bold" 
+            android:layout_marginTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/mon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/hr"
+            android:layout_marginRight="10dp"
+            android:text="Mon:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/mon_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/mon"
+            android:layout_toRightOf="@id/mon"
+            android:text="13:00 - 20:00" />
+
+        <TextView
+            android:id="@+id/tue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/mon"
+            android:text="Tue:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tue_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tue"
+            android:layout_alignLeft="@id/mon_txt"
+            android:text="13:00 - 20:00" />
+
+        <TextView
+            android:id="@+id/wed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/tue"
+            android:text="Wed:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/wed_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/wed"
+            android:layout_alignLeft="@id/mon_txt"
+            android:text="13:00 - 20:00" />
+
+        <TextView
+            android:id="@+id/thu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/wed"
+            android:text="Thu:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/thu_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/thu"
+            android:layout_alignLeft="@id/mon_txt"
+            android:text="13:00 - 20:00" />
+
+        <TextView
+            android:id="@+id/fri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/thu"
+            android:text="Fri:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fri_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/fri"
+            android:layout_alignLeft="@id/mon_txt"
+            android:text="13:00 - 20:00" />
+
+        <TextView
+            android:id="@+id/sat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/fri"
+            android:text="Sat:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sat_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/sat"
+            android:layout_alignLeft="@id/mon_txt"
+            android:text="13:00 - 20:00" />
+
+        <TextView
+            android:id="@+id/sun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/address"
+            android:layout_below="@id/sat"
+            android:text="Sun:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sun_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/sun"
+            android:layout_alignLeft="@id/mon_txt"
+            android:text="13:00 - 20:00" />
+    </RelativeLayout>
+
+</LinearLayout>

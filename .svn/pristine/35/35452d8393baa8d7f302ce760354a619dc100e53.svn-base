@@ -1,0 +1,87 @@
+package com.spendwell.entity;
+
+public class OutGoingTransaction {
+	private String fromUser, fromAccNumber, toName, toSortCode, toIban,
+			theDate;
+	private int amount, balance;
+
+	public String getFromUser() {
+		return fromUser;
+	}
+
+	public void setFromUser(String fromUser) {
+		this.fromUser = fromUser;
+	}
+
+	public String getFromAccNumber() {
+		return fromAccNumber;
+	}
+
+	public void setFromAccNumber(String fromAccNumber) {
+		this.fromAccNumber = fromAccNumber;
+	}
+
+	public String getToName() {
+		return toName;
+	}
+
+	public void setToName(String toName) {
+		this.toName = toName;
+	}
+
+	public String getToSortCode() {
+		return toSortCode;
+	}
+
+	public void setToSortCode(String toSortCode) {
+		this.toSortCode = toSortCode;
+	}
+
+	public String getToIban() {
+		return toIban;
+	}
+
+	public void setToIban(String toIban) {
+		this.toIban = toIban;
+	}
+
+	public String getTheDate() {
+		return theDate;
+	}
+
+	public void setTheDate(String theDate) {
+		this.theDate = theDate;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
+	public OutGoingTransaction(String fromUser, String fromAccNumber,
+			String toName, String toSortCode, String toIban, String theDate,
+			int amount, int balance) {
+		super();
+		this.fromUser = fromUser;
+		this.fromAccNumber = fromAccNumber;
+		this.toName = toName;
+		this.toSortCode = toSortCode;
+		this.toIban = toIban;
+		this.theDate = theDate;
+		this.amount = amount;
+		this.balance = balance;
+	}
+
+
+}

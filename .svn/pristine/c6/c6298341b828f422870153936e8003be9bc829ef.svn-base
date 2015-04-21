@@ -1,0 +1,67 @@
+package com.spendwell.activity;
+
+import com.example.budgetwell.R;
+import com.spendwell.entity.NotificaitonItem;
+import com.spendwell.service.SharedService;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class NotificationDetailsActivity extends Activity {
+	private ImageView level_img;
+	private TextView title,text,date;
+	private SharedService ss;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.notitification_item_details);
+		level_img=(ImageView)findViewById(R.id.level_img);
+		title=(TextView)findViewById(R.id.title);
+		text=(TextView)findViewById(R.id.text);
+		date=(TextView)findViewById(R.id.date);
+		ss=new SharedService(this);
+		initData();
+		setActionBar();
+	}
+	public void initData(){
+		int position=getIntent().getExtras().getInt("position");
+		NotificaitonItem item=ss.getAllNotifications().get(position);
+		
+		date.setText(item.getFormatDate());
+		text.setText(item.getText());
+		if (item.getLevel() == NotificaitonItem.INFO) {
+			title.setText("New Infomation");
+			level_img.setImageResource(R.drawable.info);
+		} else if (item.getLevel() == NotificaitonItem.SUCCESS) {
+			title.setText("New Transaction");
+			level_img.setImageResource(R.drawable.success);
+		} else if (item.getLevel() == NotificaitonItem.WARNING) {
+			title.setText("Warning");
+			level_img.setImageResource(R.drawable.warning);
+		} else {
+			title.setText("Danger!");
+			level_img.setImageResource(R.drawable.danger);
+		}
+	}
+	
+	public void setActionBar(){
+		TextView text = (TextView) this.findViewById(R.id.actionbar_text);
+		text.setText("Details");
+
+		Button back = (Button) this.findViewById(R.id.actionbar_btn);
+		back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				onBackPressed();
+			}
+		});
+	}
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="Lloyds_green">#006343</color>
+    <color name="background_grey">#E0E0E0</color>
+    <color name="text_grey">#9A9691</color>
+    <color name="red">#B40404</color>
+    <color name="white">#FFFFFF</color>
+    <color name="bar_green_light">#78D9A1</color>
+    <color name="bar_green_dark">#63C88E</color>
+    
+
+</resources>

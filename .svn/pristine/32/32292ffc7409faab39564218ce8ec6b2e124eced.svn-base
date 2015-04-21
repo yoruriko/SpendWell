@@ -1,0 +1,75 @@
+package com.spendwell.activity;
+
+import org.json.JSONObject;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.budgetwell.R;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class TestTranscationActivity extends Activity {
+	private TextView prefix, response_ed;
+	private Button submit;
+	private EditText params;
+	private RequestQueue mQueue;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.testtranscation_activity);
+		prefix = (TextView) findViewById(R.id.prefix);
+		params = (EditText) findViewById(R.id.content);
+		submit = (Button) findViewById(R.id.submit);
+		response_ed = (TextView) findViewById(R.id.response);
+		mQueue = Volley.newRequestQueue(this);
+
+		initListener();
+	}
+
+	public void initListener() {
+		submit.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (TextUtils.isEmpty(params.getText())) {
+					Toast.makeText(getApplicationContext(),
+							"Please fill the parameters", Toast.LENGTH_SHORT)
+							.show();
+				} else {
+					String url = prefix.getText()
+							+ params.getText().toString().trim()+"/?format=json";
+					JsonObjectRequest request = new JsonObjectRequest(url,
+							null, new Response.Listener<JSONObject>() {
+
+								@Override
+								public void onResponse(JSONObject response) {
+									response_ed.append(response.toString());
+								}
+							}, new Response.ErrorListener() {
+
+								@Override
+								public void onErrorResponse(VolleyError error) {
+									Toast.makeText(getApplicationContext(),
+											"Request Error", Toast.LENGTH_SHORT)
+											.show();
+								}
+							});
+					mQueue.add(request);
+				}
+			}
+		});
+	}
+}

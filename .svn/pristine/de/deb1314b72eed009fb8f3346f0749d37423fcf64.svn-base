@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="10dp"
+    android:layout_margin="10dp" >
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Example"
+        android:textColor="@color/draker_grey"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/username"
+        android:text="&apos;s account"
+        android:textColor="@color/draker_grey"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/acc_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:text="acc_name"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/acc_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/acc_name"
+        android:text="acc_no"
+        android:textColor="@color/draker_grey" />
+
+    <TextView
+        android:id="@+id/sortCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+				android:layout_below="@+id/acc_no"
+        android:text="sortCode"
+        android:textColor="@color/draker_grey" />
+
+    <TextView
+        android:id="@+id/iban"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/sortCode"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/sortCode"
+        android:text="iban"
+        android:textColor="@color/draker_grey" />
+
+    <TextView
+        android:id="@+id/blance_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sortCode"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:text="£"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/blance_pre"
+        android:layout_toRightOf="@id/blance_pre"
+        android:text="balance"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/availiable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/balance"
+        android:layout_marginTop="20dp"
+        android:text="Availiable:"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/total_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/availiable"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="£"
+        android:textColor="@color/draker_grey"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/total_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/total_pre"
+        android:layout_toRightOf="@id/total_pre"
+        android:text="total balance"
+        android:textColor="@color/draker_grey"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total_balance"
+        android:text="Overdraft Limit:"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/Lloyds_green"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/overdraft_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/limit"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"
+        android:text="£"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/draker_grey"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/overdraft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/total_balance"
+				android:layout_alignBottom="@id/overdraft_pre"
+        android:text="overdraft"
+        android:textColor="@color/draker_grey"
+        android:textSize="20sp" />
+
+</RelativeLayout>

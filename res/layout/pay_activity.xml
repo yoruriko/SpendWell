@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_grey"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <com.spendwell.utils.PullView
+        android:id="@+id/pullView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/swipe_up"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:text="From"
+            android:textColor="@color/Lloyds_green"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/from_acc"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/from"
+            android:textAlignment="center"
+            android:gravity="center"
+             />
+
+        <TextView
+            android:id="@+id/to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/from_acc"
+            android:layout_marginTop="5dp"
+            android:text="To"
+            android:textColor="@color/Lloyds_green"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/to_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/to"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="20dp" >
+
+            <EditText
+                android:id="@+id/toAccountName"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:hint="Account Name"
+                android:maxLines="1" />
+
+
+            <EditText
+                android:id="@+id/toIban"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_below="@id/toAccountName"
+                android:gravity="center_horizontal"
+                android:hint="Iban"
+                android:maxLength="22" />
+            
+                        <EditText
+                android:id="@+id/toSortCode"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toIban"
+                android:hint="SortCode"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:maxLength="6" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/to_box"
+            android:layout_marginTop="5dp"
+            android:text="Amount"
+            android:textColor="@color/Lloyds_green"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/pay_amount"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/amount"
+            android:layout_centerHorizontal="true"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/pay_amount"
+            android:layout_toLeftOf="@id/pay_amount"
+            android:text="£"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pay_amount"
+            android:layout_marginTop="5dp"
+            android:text="Description"
+            android:textColor="@color/Lloyds_green"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/des_edt"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/des"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
+            android:hint="Enter the description in here.."
+            android:maxLines="2" />
+
+        <Button
+            android:id="@+id/pay_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/des_edt"
+            android:layout_centerHorizontal="true"
+            android:text="Pay"
+            android:visibility="gone" />
+    </com.spendwell.utils.PullView>
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/action_bar_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/meme"
+            android:layout_width="300dp"
+            android:layout_height="375dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/kitty_0" />
+
+        <TextView
+            android:id="@+id/meme_mood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/meme"
+            android:layout_centerHorizontal="true"
+            android:text="MeMe is very happy with your spending!" />
+
+        <TextView
+            android:id="@+id/meme_punishment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/meme_mood"
+            android:layout_centerHorizontal="true"
+            android:text="MeMe is unhappy, pet him to make him happy"
+            android:textColor="@color/red"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</LinearLayout>

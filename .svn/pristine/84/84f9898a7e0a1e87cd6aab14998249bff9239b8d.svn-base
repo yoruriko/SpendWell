@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/action_bar_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/from_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="example"
+            android:textColor="@color/Lloyds_green"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/from_iban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/from_name"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="2134-weqa-2123-asf2-asgg-21"
+            android:textColor="@color/draker_grey" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/from_iban"
+            android:paddingBottom="10dp"
+            android:text="2015-04-12 12:00:00"
+            android:textColor="@color/draker_grey" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:paddingBottom="20dp"
+            android:text="description about this transcation"
+            android:textColor="@color/draker_grey" />
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/description"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:text="123.00"
+            android:textColor="@color/Lloyds_green"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/amount_pre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description"
+            android:layout_toLeftOf="@id/amount"
+            android:paddingRight="10dp"
+            android:text="+£"
+            android:textColor="@color/Lloyds_green"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/amount"
+            android:layout_below="@id/amount"
+            android:text="1200.00"
+            android:paddingRight="10dp"
+            android:textColor="@color/draker_grey"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/balance_pre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/amount"
+            android:layout_toLeftOf="@id/balance"
+            android:paddingRight="10dp"
+            android:text="£"
+            android:textColor="@color/draker_grey"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/to_acc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/balance"
+            android:text="myAccount"
+            android:paddingRight="10dp"
+            android:textColor="@color/draker_grey"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/balance"
+            android:layout_toLeftOf="@id/to_acc"
+            android:paddingRight="10dp"
+            android:text="to"
+            android:textColor="@color/draker_grey"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,97 @@
+package com.spendwell.adapter;
+
+import java.util.List;
+
+import com.example.budgetwell.R;
+import com.spendwell.entity.BankAccount;
+import com.spendwell.entity.OutGoingTransaction;
+
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+/**
+ * 
+ * @author Yifei Gao
+ *
+ */
+public class OutgoingAdapter extends BaseAdapter {
+
+	private Activity mActivity;
+	private List<OutGoingTransaction> mList;
+	private List<BankAccount> accList;
+
+	public OutgoingAdapter(Activity mActivity, List<OutGoingTransaction> mList,
+			List<BankAccount> accList) {
+		super();
+		this.mActivity = mActivity;
+		this.mList = mList;
+		this.accList = accList;
+	}
+
+	@Override
+	public int getCount() {
+		return mList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return mList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	/**
+	 * Save holder in the view's tag, avoid reloading the information
+	 * 
+	 * @author Yifei Gao
+	 */
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		OutgoingHolder holder;
+		OutGoingTransaction item = mList.get(position);
+		if (convertView == null) {
+			convertView = mActivity.getLayoutInflater().inflate(
+					R.layout.outgoing_item_layout, null);
+			holder = new OutgoingHolder();
+			holder.to_name = (TextView) convertView.findViewById(R.id.to_name);
+			holder.iban = (TextView) convertView.findViewById(R.id.iban);
+			holder.date = (TextView) convertView.findViewById(R.id.date);
+			holder.amount = (TextView) convertView.findViewById(R.id.amount);
+			holder.from = (TextView) convertView.findViewById(R.id.from);
+			convertView.setTag(holder);
+		} else {
+			holder = (OutgoingHolder) convertView.getTag();
+		}
+
+		holder.to_name.setText(item.getToName());
+		holder.iban.setText(item.getFormatIban());
+		holder.date.setText(item.getFormatDate());
+		holder.amount.setText(item.getAmount() + "");
+		String from_acc = "";
+		for (int i = 0; i < accList.size(); i++) {
+			if (item.getFromAccount() == accList.get(i).getId()) {
+				from_acc = accList.get(i).getAccountName();
+			}
+		}
+		holder.from.setText(from_acc);
+		convertView.setTag(holder);
+		return convertView;
+	}
+
+	/**
+	 * Inner Class to hold informations in the view
+	 * 
+	 * @author Yifei Gao
+	 * 
+	 */
+	public class OutgoingHolder {
+		private TextView to_name, iban, date, amount, from;
+	}
+
+}

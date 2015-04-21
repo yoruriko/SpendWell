@@ -1,0 +1,141 @@
+package com.spendwell.activity;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.budgetwell.R;
+import com.spendwell.service.SharedService;
+import com.spendwell.thread.httpGetThread;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class TestTranscationActivity extends Activity {
+	private TextView prefix, response_ed;
+	private Button submit;
+	private EditText params;
+	private RequestQueue mQueue;
+	private SharedService ss;
+	private Handler mHandler=new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			if (msg.what==1) {
+				response_ed.append(msg.obj.toString());
+			}else{
+				Toast.makeText(getApplicationContext(), msg.obj.toString(), Toast.LENGTH_SHORT).show();
+			}
+		}
+		
+	};
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.testtranscation_activity);
+		prefix = (TextView) findViewById(R.id.prefix);
+		params = (EditText) findViewById(R.id.content);
+		submit = (Button) findViewById(R.id.submit);
+		ss = new SharedService(this);
+		response_ed = (TextView) findViewById(R.id.response);
+		mQueue = Volley.newRequestQueue(this);
+
+		initListener();
+	}
+
+	public void initListener() {
+		submit.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (TextUtils.isEmpty(params.getText())) {
+					String url = "https://calm-hamlet-8140.herokuapp.com/api/token/?format=json";
+					Map<String, String> params = new HashMap<String, String>();
+					params.put("username", "root");
+					params.put("password", "toor");
+
+					JSONObject json = new JSONObject(params);
+
+					JsonObjectRequest request = new JsonObjectRequest(url,
+							json, new Response.Listener<JSONObject>() {
+
+								@Override
+								public void onResponse(JSONObject response) {
+									try {
+										String token = response.get("token")
+												.toString();
+										ss.saveRequestToken(token);
+									} catch (JSONException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									response_ed.append(ss.getRequestToken());
+								}
+							}, new Response.ErrorListener() {
+
+								@Override
+								public void onErrorResponse(VolleyError error) {
+									Toast.makeText(getApplicationContext(),
+											error.toString(),
+											Toast.LENGTH_SHORT).show();
+								}
+							});
+					mQueue.add(request);
+				} else {
+					String url = "https://calm-hamlet-8140.herokuapp.com/api/outgoing/1/?format=json";
+					
+					JsonObjectRequest request = new JsonObjectRequest(
+							Request.Method.GET, url, null,
+							new Response.Listener<JSONObject>() {
+
+								@Override
+								public void onResponse(JSONObject response) {
+									response_ed.append(response.toString());
+								}
+							}, new Response.ErrorListener() {
+
+								@Override
+								public void onErrorResponse(VolleyError error) {
+									Toast.makeText(getApplicationContext(),
+											error.toString(),
+											Toast.LENGTH_SHORT).show();
+								}
+							}) {
+						@Override
+						public Map<String, String> getHeaders()
+								throws AuthFailureError {
+
+							Map<String, String> headers = new HashMap<String, String>();
+							headers.putAll(super.getHeaders());
+							headers.put("Authorization",
+									"Token " + ss.getRequestToken());
+							Log.i("Header", headers.toString());
+							return headers;
+						}
+					};
+					mQueue.add(request);
+				}
+			}
+		});
+	}
+}

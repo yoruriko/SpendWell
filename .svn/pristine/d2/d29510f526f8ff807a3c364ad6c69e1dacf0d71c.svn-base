@@ -1,0 +1,20 @@
+package com.spendwell.activity;
+
+import com.example.budgetwell.R;
+import com.spendwell.service.SharedService;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.Spinner;
+
+public class PayActivity extends Activity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.pay_activity);
+		SharedService ss=new SharedService(this);
+		Spinner sp=(Spinner)this.findViewById(R.id.from_acc);
+		
+	}
+}

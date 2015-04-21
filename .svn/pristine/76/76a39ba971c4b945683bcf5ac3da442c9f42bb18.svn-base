@@ -1,0 +1,75 @@
+package com.spendwell.entity;
+
+public class Account {
+	private String accName, accNumber, sortCode, iban;
+	private int amount, overdraft, availiableAmount;
+
+	public String getAccName() {
+		return accName;
+	}
+
+	public void setAccName(String accName) {
+		this.accName = accName;
+	}
+
+	public String getAccNumber() {
+		return accNumber;
+	}
+
+	public void setAccNumber(String accNumber) {
+		this.accNumber = accNumber;
+	}
+
+	public String getSortCode() {
+		return sortCode;
+	}
+
+	public void setSortCode(String sortCode) {
+		this.sortCode = sortCode;
+	}
+
+	public String getIban() {
+		return iban;
+	}
+
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public int getOverdraft() {
+		return overdraft;
+	}
+
+	public void setOverdraft(int overdraft) {
+		this.overdraft = overdraft;
+	}
+
+	public int getAvailiableAmount() {
+		return availiableAmount;
+	}
+
+	public void setAvailiableAmount(int availiableAmount) {
+		this.availiableAmount = availiableAmount;
+	}
+
+	public Account(String accName, String accNumber, String sortCode,
+			String iban, int amount, int overdraft) {
+		super();
+		this.accName = accName;
+		this.accNumber = accNumber;
+		this.sortCode = sortCode;
+		this.iban = iban;
+		this.amount = amount;
+		this.overdraft = overdraft;
+		this.availiableAmount = amount + overdraft;
+	}
+
+}

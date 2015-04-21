@@ -1,0 +1,120 @@
+package com.spendwell.entity;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
+public class NotificaitonItem {
+
+	public static final int INFO = 0;
+	public static final int SUCCESS = 1;
+	public static final int WARNING = 2;
+	public static final int DANGER = 3;
+
+	private int level, id;
+	private String text, theDate;
+
+	// private boolean isRead;
+
+	public NotificaitonItem(int id, int level, String text, String theDate) {
+		super();
+		this.level = level;
+		this.id = id;
+		this.text = text;
+		this.theDate = theDate;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getTheDate() {
+		return theDate;
+	}
+
+	public void setTheDate(String theDate) {
+		this.theDate = theDate;
+	}
+
+	public String getFormatDate() {
+		SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		// format the date into string
+		return output.format(getDate());
+	}
+
+	public Date getDate() {
+		SimpleDateFormat input = new SimpleDateFormat(
+				"yyyy-MM-dd'T'HH:mm:ss.SSS");
+		input.setTimeZone(TimeZone.getTimeZone("UTC"));
+		// construct the date from the date string using simple Date Format
+		try {
+			return input.parse(getTheDate().substring(0, 22));
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	// public String getTheDate() {
+	// SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	// try {
+	// setDate(theDate);
+	// } catch (ParseException e) {
+	// e.printStackTrace();
+	// }
+	// String result = output.format(date);
+	// return result;
+	// }
+	//
+	// public void setTheDate(String theDate) {
+	// this.theDate = theDate;
+	// }
+	//
+	// public void setDate(String date) throws ParseException {
+	// SimpleDateFormat sdf = new SimpleDateFormat(
+	// "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'");
+	// this.date = sdf.parse(date);
+	// }
+	//
+	// public Date getDate() {
+	// if (date == null) {
+	// try {
+	// setDate(theDate);
+	// } catch (ParseException e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// return date;
+	// }
+
+	// public void setRead(boolean isRead) {
+	// this.isRead = isRead;
+	// }
+	//
+	// public boolean isRead() {
+	// return isRead;
+	// }
+
+}

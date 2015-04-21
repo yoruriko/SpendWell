@@ -1,0 +1,145 @@
+package com.spendwell.adapter;
+
+import java.util.List;
+
+import com.example.budgetwell.R;
+import com.spendwell.entity.ReminderItem;
+import android.app.Activity;
+import android.os.Handler;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class ReminderItemAdapter extends BaseAdapter {
+	private Activity mActivity;
+	private List<ReminderItem> mList;
+	private ImageView type_img, alarm_img, delete_img;
+	private TextView user_tv, type_tv, amount_tv, description_tv, payInfo_tv,
+			payDate_tv;
+	private Handler mHandler;
+
+	public ReminderItemAdapter(Activity mActivity, List<ReminderItem> mList,
+			Handler mHandler) {
+		super();
+		this.mActivity = mActivity;
+		this.mList = mList;
+		this.mHandler = mHandler;
+	}
+
+	@Override
+	public int getCount() {
+		return mList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return mList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		ReminderItemHolder holder;
+		final ReminderItem item = mList.get(position);
+		
+		if (convertView == null) {
+			convertView = mActivity.getLayoutInflater().inflate(
+					R.layout.reminder_item_layout, null);
+			holder = new ReminderItemHolder();
+			holder.type_img = (ImageView) convertView
+					.findViewById(R.id.type_img);
+			holder.alarm_img = (ImageView) convertView
+					.findViewById(R.id.alarm_img);
+			holder.delete_img = (ImageView) convertView
+					.findViewById(R.id.delete_img);
+			holder.user_tv = (TextView) convertView.findViewById(R.id.user_tv);
+			holder.type_tv = (TextView) convertView.findViewById(R.id.type_tv);
+			holder.amount_tv = (TextView) convertView
+					.findViewById(R.id.amount_tv);
+			holder.description_tv = (TextView) convertView
+					.findViewById(R.id.description_tv);
+			holder.payInfo_tv = (TextView) convertView
+					.findViewById(R.id.payInfo_tv);
+			holder.payDate_tv = (TextView) convertView
+					.findViewById(R.id.payDate_tv);
+			holder.item=item;
+			convertView.setTag(holder);
+		} else {
+			holder = (ReminderItemHolder) convertView.getTag();
+		}
+
+		switch (item.getType()) {
+		case ReminderItem.MEAL:
+			holder.type_img.setImageResource(R.drawable.meal_type);
+			break;
+		case ReminderItem.DRINK:
+			holder.type_img.setImageResource(R.drawable.drink_type);
+			break;
+		case ReminderItem.UTILITIES_BILL:
+			holder.type_img.setImageResource(R.drawable.utilities_bill_tye);
+			break;
+		case ReminderItem.ACCOMMODATION:
+			holder.type_img.setImageResource(R.drawable.accommodation_type);
+			break;
+		case ReminderItem.TRAVEL:
+			holder.type_img.setImageResource(R.drawable.travel_type);
+			break;
+		case ReminderItem.SOCIAL:
+			holder.type_img.setImageResource(R.drawable.social_type);
+			break;
+		case ReminderItem.TRANSPORT:
+			holder.type_img.setImageResource(R.drawable.transport_type);
+			break;
+		case ReminderItem.ELSE:
+			holder.type_img.setImageResource(R.drawable.else_type);
+			break;
+
+		default:
+			holder.type_img.setImageResource(R.drawable.else_type);
+			break;
+		}
+
+		holder.user_tv.setText(item.getTargetName());
+
+		if (item.getPayType() == ReminderItem.OWE) {
+			holder.type_tv.setText("Need to pay £");
+
+			holder.payInfo_tv.setText("Need to pay before");
+		} else if (item.getPayType() == ReminderItem.LEND) {
+			holder.type_tv.setText("Owe you £");
+			holder.payInfo_tv.setText("Need to pay before");
+		}
+
+		holder.amount_tv.setText(item.getAmount() + "");
+
+		holder.description_tv.setText(item.getDescription());
+
+		holder.payDate_tv.setText(item.getDate());
+
+		holder.delete_img.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mHandler.obtainMessage(1, item).sendToTarget();
+			}
+		});
+
+		convertView.setTag(holder);
+		return convertView;
+	}
+
+	public class ReminderItemHolder {
+		ImageView type_img, alarm_img, delete_img;
+		TextView user_tv, type_tv, amount_tv, description_tv, payInfo_tv,
+				payDate_tv;
+		ReminderItem item;
+	}
+}

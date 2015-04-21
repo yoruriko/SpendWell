@@ -1,0 +1,101 @@
+package com.spendwell.utils;
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+
+/**
+ * 
+ * Shake Listener that monitor the accelerator
+ * 
+ * @author Yifei Gao
+ * 
+ */
+public class ShakeListener implements SensorEventListener {
+	// speed threshold, do not react with speed below this value
+	private static final int SPEED_THRESHOLD = 3000;
+	// time interval between two shake event
+	private static final int UPDATE_INTERVAL_TIME = 70;
+
+	private SensorManager sensorManager;
+	private Sensor sensor;
+	private onShakeListener onShakeListener;
+	private Context mContext;
+	private float lastX, lastY, lastZ;
+	private long lastUpdateTime;
+
+	public ShakeListener(Context context) {
+		// get the context from given parameter
+		mContext = context;
+		start();
+	}
+
+	// get the sensor and register Listener
+	public void start() {
+		sensorManager = (SensorManager) mContext
+				.getSystemService(Context.SENSOR_SERVICE);
+		if (sensorManager != null) {
+			// get a default accelerometer sensor for sensor variable
+			sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		}
+		// register listener
+		if (sensor != null) {
+			sensorManager.registerListener(this, sensor,
+					SensorManager.SENSOR_DELAY_GAME);
+		}
+
+	}
+
+	// unregister the listener when finish,used when the Activity using this
+	// listener is destroyed
+	public void stop() {
+		sensorManager.unregisterListener(this);
+	}
+
+	// setter
+	public void setOnShakeListener(onShakeListener listener) {
+		onShakeListener = listener;
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		long currentUpdateTime = System.currentTimeMillis();
+		long timeInterval = currentUpdateTime - lastUpdateTime;
+		// stopping repeated event
+		if (timeInterval < UPDATE_INTERVAL_TIME)
+			return;
+		// update the marker for time
+		lastUpdateTime = currentUpdateTime;
+
+		// get coordinates for positions
+		float x = event.values[0];
+		float y = event.values[1];
+		float z = event.values[2];
+
+		// change in positions
+		float deltaX = x - lastX;
+		float deltaY = y - lastY;
+		float deltaZ = z - lastZ;
+
+		// calculate speed sqrt(deltaX^2+deltaY^2+deltaZ^2)/time
+		double speed = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ
+				* deltaZ)
+				/ timeInterval * 10000;
+		if (speed >= SPEED_THRESHOLD) {
+			onShakeListener.onShake();
+		}
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+	}
+
+	// onShakeListener interface
+	public interface onShakeListener {
+		public void onShake();
+	}
+
+}

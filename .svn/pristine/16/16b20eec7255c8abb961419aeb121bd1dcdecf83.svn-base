@@ -1,0 +1,82 @@
+package com.spendwell.service;
+
+import com.google.gson.Gson;
+import com.spendwell.entity.Account;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
+public class SharedService {
+	private Context context;
+	private String sp_name = "SpendWellPref";
+
+	public SharedService(Context context) {
+		this.context = context;
+	}
+
+	public void save(String user_name, String user_token, boolean isNameSave) {
+		SharedPreferences sp = context.getSharedPreferences(sp_name,
+				Context.MODE_PRIVATE);
+		Editor editor = sp.edit();
+		editor.putString("user_name", user_name);
+		editor.putString("user_token", user_token);
+		editor.putBoolean("is_name_saved", isNameSave);
+		editor.commit();
+	}
+
+	public void saveRequestToken(String req_token) {
+		SharedPreferences sp = context.getSharedPreferences(sp_name,
+				Context.MODE_PRIVATE);
+		Editor editor = sp.edit();
+		editor.putString("request_token", req_token);
+		editor.commit();
+	}
+
+	public String getRequestToken() {
+		SharedPreferences sp = context.getSharedPreferences(sp_name,
+				Context.MODE_PRIVATE);
+		return sp.getString("user_token", "");
+	}
+
+	public void saveAccount(Account account) {
+		SharedPreferences sp = context.getSharedPreferences(sp_name,
+				Context.MODE_PRIVATE);
+		Editor editor = sp.edit();
+		Gson gson = new Gson();
+		String json = gson.toJson(account);
+		editor.putString("Account", json);
+		editor.commit();
+	}
+
+	public String readUserName() {
+		SharedPreferences sp = context.getSharedPreferences(sp_name,
+				Context.MODE_PRIVATE);
+
+		return sp.getString("user_name", "");
+	}
+
+	public String readUserToken() {
+		SharedPreferences sp = context.getSharedPreferences(sp_name,
+				Context.MODE_PRIVATE);
+		return sp.getString("user_token", "");
+	}
+
+	public Account readAccount() {
+		SharedPreferences sp = context.getSharedPreferences(sp_name,
+				Context.MODE_PRIVATE);
+		Gson gson = new Gson();
+		String json = sp.getString("Account", "");
+		if (json.equals("")) {
+			return null;
+		}
+		Account account = gson.fromJson(json, Account.class);
+		return account;
+	}
+
+	public boolean getIsNameSave() {
+		SharedPreferences sp = context.getSharedPreferences(sp_name,
+				Context.MODE_PRIVATE);
+		return sp.getBoolean("is_name_saved", false);
+	}
+}

@@ -1,0 +1,80 @@
+package com.spendwell.utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.spendwell.entity.OutGoingTransaction;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+public class TransferSQLServiceImpl {
+	private static final String TAG = TransferSQLServiceImpl.class
+			.getSimpleName();
+	private DatabaseHelper databaseHelper;
+	private SQLiteDatabase db;
+	private String table_name = "transfers";
+
+	public TransferSQLServiceImpl(Context context) {
+		databaseHelper = new DatabaseHelper(context);
+	}
+
+	public synchronized int insertOutGoingTransaction(OutGoingTransaction trans) {
+		db = databaseHelper.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("fromUser", trans.getFromUser());
+		cv.put("formAccNumber", trans.getFromAccNumber());
+		cv.put("toName", trans.getToName());
+		cv.put("toSortCode", trans.getToSortCode());
+		cv.put("toIban", trans.getToIban());
+		cv.put("amount", trans.getAmount());
+		cv.put("balance", trans.getBalance());
+		cv.put("theDate", trans.getTheDate());
+
+		long result = db.insertWithOnConflict("payment_outgoingtransaction",
+				null, cv, SQLiteDatabase.CONFLICT_IGNORE);
+		db.close();
+		if (result < 0) {
+			Log.i("insertOutGoingTransaction", "fail");
+			return -1;
+		} else {
+			Log.i("insertOutGoingTransaction", "sucess");
+			return 1;
+		}
+	}
+
+	public synchronized List<OutGoingTransaction> getAllOutGoingTrans() {
+		db = databaseHelper.getWritableDatabase();
+
+		List<OutGoingTransaction> list = new ArrayList<OutGoingTransaction>();
+		OutGoingTransaction trans = null;
+		Cursor cursor = null;
+
+		cursor = db.rawQuery(
+				"select * from payment_outgoingtransaction order by id", null);
+
+		while (cursor.moveToNext()) {
+			trans = new OutGoingTransaction();
+			trans.setFromUser(cursor.getString(cursor
+					.getColumnIndex("fromUser")));
+			trans.setFromAccNumber(cursor.getString(cursor
+					.getColumnIndex("formAccNumber")));
+			trans.setToName(cursor.getString(cursor.getColumnIndex("toName")));
+			trans.setToSortCode(cursor.getString(cursor
+					.getColumnIndex("toSortCode")));
+			trans.setToIban(cursor.getString(cursor.getColumnIndex("toIban")));
+			trans.setAmount(cursor.getInt(cursor.getColumnIndex("amount")));
+			trans.setBalance(cursor.getInt(cursor.getColumnIndex("balance")));
+			trans.setTheDate(cursor.getString(cursor.getColumnIndex("theDate")));
+			list.add(trans);
+			Log.i("payment_outgoingtransaction",
+					"found transaction with amount:" + trans.getBalance());
+		}
+		cursor.close();
+		return list;
+	}
+
+}
